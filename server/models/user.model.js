@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { type } from "os";
 
+//create user schema and set rules
 const userSchema= new mongoose.Schema({
     username:{
         type:String,
@@ -17,8 +18,8 @@ const userSchema= new mongoose.Schema({
         required:true,     
     },
 
-}, {timestamps:true});
+}, {timestamps:true}); //to save time of user created/updated
 
-const User= mongoose.model('User',userSchema);
+const User= mongoose.model('User',userSchema); //user model created
 
-export default User;
+export default User; // to use the user model anywhere 
