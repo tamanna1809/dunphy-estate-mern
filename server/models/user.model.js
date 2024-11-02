@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { type } from "os";
+
 
 //create user schema and set rules
 const userSchema= new mongoose.Schema({
