@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
-import authRouter from "./routes/auth.route.js"
+import authRouter from "./routes/auth.route.js";
 
 dotenv.config();
 
@@ -18,9 +18,21 @@ mongoose
 const app = express();
 app.use(express.json()); //backend se post request kari but json main input allowed nhi h so ye likhna padhta h
 
-app.listen(3003, () => {
-  console.log("Server is running on port 3003!!!");
+app.listen(3001, () => {
+  console.log("Server is running on port 3001!!!");
 });
 
 app.use("/api/user", userRouter); // all routes should be defined in index.js
 app.use("/api/auth", authRouter);
+
+
+//Middleware for error handling
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
